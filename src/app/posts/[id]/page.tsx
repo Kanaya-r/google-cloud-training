@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { db } from '@/lib/firebase-admin';
+import { getImageSignedUrl } from '@/lib/signed-url';
 
 type Props = {
   params: Promise<{
@@ -18,16 +19,17 @@ export default async function PostDetailPage({ params }: Props) {
   const post = doc.data() as {
     title: string;
     body: string;
-    imageUrl: string;
     imagePath: string;
     createdAt: string;
   };
+
+  const imageUrl = await getImageSignedUrl(post.imagePath);
 
   return (
     <main>
       <h1>{post.title}</h1>
 
-      <img src={post.imageUrl} alt="" width={640} />
+      <img src={imageUrl} alt="" width={600} />
 
       <p>{post.body}</p>
 

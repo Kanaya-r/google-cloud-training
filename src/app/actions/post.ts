@@ -44,13 +44,10 @@ export async function createPost(formData: FormData) {
     },
   });
 
-  const imageUrl = `https://storage.googleapis.com/${bucket.name}/${imagePath}`;
-
 	// Firestoreに投稿データを保存する
   const postRef = await db.collection('posts').add({
     title,
     body,
-    imageUrl,
     imagePath,
     createdAt: now.toISOString(),
   });
