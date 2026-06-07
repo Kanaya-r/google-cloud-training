@@ -1,22 +1,24 @@
+import { createPost } from '@/app/actions/post';
+
 export default function NewPostPage() {
   return (
     <main>
       <h1>投稿作成</h1>
 
-      <form>
+      <form action={createPost}> {/* createPost が実行 */}
         <div>
           <label htmlFor="title">タイトル</label>
-          <input id="title" name="title" type="text" />
+          <input id="title" name="title" type="text" required />
         </div>
 
         <div>
           <label htmlFor="body">本文</label>
-          <textarea id="body" name="body" />
+          <textarea id="body" name="body" required />
         </div>
 
         <div>
           <label htmlFor="image">画像</label>
-          <input id="image" name="image" type="file" accept="image/*" />
+          <input id="image" name="image" type="file" accept="image/*" required />
         </div>
 
         <button type="submit">投稿する</button>
