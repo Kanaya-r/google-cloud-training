@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import { db } from '@/lib/firebase-admin';
-import { bucket } from '@/lib/storage';
+import { getBucket } from '@/lib/storage';
 
 export async function createPost(formData: FormData) {
   const title = String(formData.get('title') || '').trim();
@@ -24,6 +24,8 @@ export async function createPost(formData: FormData) {
   if (!image.type.startsWith('image/')) {
     throw new Error('画像ファイルを選択してください。');
   }
+
+  const bucket = getBucket();
 
 	// Cloud Storageに保存するパスを作る
   const now = new Date();

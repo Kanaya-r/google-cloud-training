@@ -1,6 +1,8 @@
-import { bucket } from '@/lib/storage';
+import { getBucket } from '@/lib/storage';
 
 export async function getImageSignedUrl(imagePath: string) {
+  const bucket = getBucket();
+
   const [signedUrl] = await bucket.file(imagePath).getSignedUrl({
     version: 'v4',
     action: 'read',
