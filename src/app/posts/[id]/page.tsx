@@ -8,6 +8,8 @@ type Props = {
   }>;
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function PostDetailPage({ params }: Props) {
   const { id } = await params;
   const doc = await db.collection('posts').doc(id).get();

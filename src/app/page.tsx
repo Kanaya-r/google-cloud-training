@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { db } from '@/lib/firebase-admin';
 import { getImageSignedUrl } from '@/lib/signed-url';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const snapshot = await db
     .collection('posts')
